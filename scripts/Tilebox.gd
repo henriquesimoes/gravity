@@ -4,39 +4,12 @@ const BLOCK_SIZE = 40
 const PADDING = 0
 
 var column = int(OS.window_size.x/BLOCK_SIZE) + 1
-var line = int(OS.window_size.y/BLOCK_SIZE) + 1
+var line = int(OS.window_size.y*5/BLOCK_SIZE) + 1
 
-func _ready():
-	"""#functions in main.gd
-	var path = generatePath(column, line)
-	var wall = create_wall(path)
-	"""
-	#fuctions in class: Tilebox.gd
-	var tilebox = load("res://Minigames/Gravity/Scripts/Tilebox.gd")
-	var tile = tilebox.new()#instance of class tilebox.gd
-	self.add_child( tile )#adding to scene
-	var path_from_class = tile.generatePath(column, line)#creating path using classes function
-	var n1 = tile.create_wall(path_from_class)#creating wall using classes bluewall object
-	tile.add_wall_y(n1, 200)
-	
-	
-	
-	pass
 
-func minigame_start():
-	.minigame_start()
-	
-	pass
-func _process(delta):
-	
-	pass
-	
-
-	
-	
 func create_wall(path, x = 0, y = 0):
 	var wall = []
-	var tile_file = load('res://Minigames/Gravity/Scenes/Tile.tscn')
+	var tile_file = load('res://Minigames/Gravity/Scenes/BlueTile.tscn')
 
 	
 	for i in range(line):
@@ -50,7 +23,7 @@ func create_wall(path, x = 0, y = 0):
 			wall[i].append(tile_node)			
 			self.add_child(tile_node)	
 	return wall
-	
+
 func add_wall_x(wall, number):
 	for row in wall:
 		for tile in row:
@@ -65,7 +38,6 @@ func add_wall_y(wall, number):
 
 #falta implementar exceções do base (limites laterais)
 #Falta implementar append de tres valores seguidos do path	
-
 func generatePath ( length, depth = 100, base = randi()):
 	base %= length
 	var result = []
@@ -77,6 +49,9 @@ func generatePath ( length, depth = 100, base = randi()):
 		base += random
 		result.append(value)
 	return result
-	
-	
-	
+func _ready():
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
