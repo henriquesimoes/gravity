@@ -4,7 +4,7 @@ const BLOCK_SIZE = 40
 const PADDING = 0
 
 var column = int(OS.window_size.x/BLOCK_SIZE) + 1
-var line = int(OS.window_size.y*5/BLOCK_SIZE) + 1
+var line = int(OS.window_size.y/BLOCK_SIZE) + 1
 
 
 func create_wall(path, x = 0, y = 0):
