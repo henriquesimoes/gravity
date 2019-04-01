@@ -6,12 +6,9 @@ const PADDING = 0
 var column = int(OS.window_size.x/BLOCK_SIZE) + 1
 var line = int(OS.window_size.y/BLOCK_SIZE) + 1
 
-
 func create_wall(path, x = 0, y = 0):
 	var wall = []
-	var tile_file = load('res://Minigames/Gravity/Scenes/BlueTile.tscn')
-
-	
+	var tile_file = load('res://Minigames/Gravity/Scenes/BlueTile.tscn')	
 	for i in range(line):
 		wall.append([])
 		for j in range(column):
@@ -39,16 +36,21 @@ func add_wall_y(wall, number):
 #falta implementar exceções do base (limites laterais)
 #Falta implementar append de tres valores seguidos do path	
 func generatePath ( length, depth = 100, base = randi()):
-	base %= length
+	#base %= length - 2
+	base = length - 1
 	var result = []
+	print (length)
 	for i in range(depth):
 		var value = []
-		var random = randi() %3 - 1
+		var random = randi() % 3 - 1
+		while (base + random < 0 or base + random > length - 1):
+			random = randi() % 3 - 1
 		value.append(base)
 		value.append(base + random)
 		base += random
 		result.append(value)
 	return result
+	
 func _ready():
 	pass # Replace with function body.
 
