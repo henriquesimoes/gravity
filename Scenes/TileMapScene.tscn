@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Minigames/Gravity/Resources/Tiles.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[node name="Node" type="Node"]
+
+[node name="Ground" type="Sprite" parent="."]
+position = Vector2( 75, 25 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 158, 38, 40, 40 )
+
+[node name="Ground" type="StaticBody2D" parent="Ground"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/Ground"]
+scale = Vector2( 2, 2 )
+shape = SubResource( 1 )
+
+[node name="FullGround" type="Sprite" parent="."]
+position = Vector2( 25, 25 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 497, 78, 40, 40 )
+
+[node name="Ground" type="StaticBody2D" parent="FullGround"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FullGround/Ground"]
+scale = Vector2( 2, 2 )
+shape = SubResource( 1 )
+
