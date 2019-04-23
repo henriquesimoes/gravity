@@ -1,13 +1,12 @@
 extends "res://Scripts/minigame.gd"
 
-const BLOCK_SIZE = 40
-const WINDOW_HEIGHT = 400
-const WINDOW_WIDTH = 640
 
-var column = int(WINDOW_WIDTH/BLOCK_SIZE)
-var row = int(WINDOW_HEIGHT/BLOCK_SIZE)
+onready var column = int($TileMap.get_used_rect().size.x/$TileMap.scale.x)
+
+onready var row = int($TileMap.get_used_rect().size.y/$TileMap.scale.y)
 
 func _ready():
+	$Player.difficulty = difficulty
 	var path = gen_path(column)
 	apply_path(path)
 	pass
@@ -31,7 +30,7 @@ func apply_path(path_trace):
 	
 func gen_path (length, depth = 100, base = randi()):
 	base %= length - int(length/2)
-	base += int(length/2)
+	base += int(length/4)
 	var result = []
 	for i in range(depth):
 		var value = []
@@ -46,6 +45,12 @@ func gen_path (length, depth = 100, base = randi()):
 	return result
 	
 func fall(delta):
-	var multiplier = difficulty * 100
+	var multiplier = difficulty * 100 * Engine.get_time_scale()
 	$TileMap.position.y -= multiplier * delta
 	pass
+
+func _on_Player_body_entered(body):
+	lose()
+	set_process(false)
+	$Player.set_process(false)
+	pass 
