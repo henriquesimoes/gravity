@@ -7,6 +7,8 @@ onready var row = int($TileMap.get_used_rect().size.y/$TileMap.scale.y)
 
 func _ready():
 	$Player.difficulty = difficulty
+	
+	$Player.screen_width = get_tree().get_root().size.x
 	var path = gen_path(column)
 	apply_path(path)
 	pass
@@ -47,6 +49,7 @@ func gen_path (length, depth = 100, base = randi()):
 func fall(delta):
 	var multiplier = difficulty * 100 * Engine.get_time_scale()
 	$TileMap.position.y -= multiplier * delta
+	$Background.position.y -= multiplier * delta * 0.05
 	pass
 
 func _on_Player_body_entered(body):
