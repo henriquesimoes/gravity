@@ -7,6 +7,7 @@ var column = int(OS.window_size.x/BLOCK_SIZE) + 1
 var line = int(OS.window_size.y/BLOCK_SIZE) + 1
 
 func create_wall(path, x = 0, y = 0):
+	
 	var wall = []
 	var tile_file = load('res://Minigames/Gravity/Scenes/BlueTile.tscn')	
 	for i in range(line):

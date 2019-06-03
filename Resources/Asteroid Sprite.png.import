@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Tiles.png-09b82e693688b116fff00091a979c32c.stex"
+path="res://.import/Asteroid Sprite.png-0209acba4b0cb4a9558518a32cd7a2fb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Minigames/Gravity/Resources/Tiles.png"
-dest_files=[ "res://.import/Tiles.png-09b82e693688b116fff00091a979c32c.stex" ]
+source_file="res://Minigames/Gravity/Resources/Asteroid Sprite.png"
+dest_files=[ "res://.import/Asteroid Sprite.png-0209acba4b0cb4a9558518a32cd7a2fb.stex" ]
 
 [params]
 

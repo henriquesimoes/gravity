@@ -1,16 +1,20 @@
 extends "res://Scripts/minigame.gd"
 
 
-onready var column = int($TileMap.get_used_rect().size.x/$TileMap.scale.x)
+var column
 
-onready var row = int($TileMap.get_used_rect().size.y/$TileMap.scale.y)
+var row
 
 func _ready():
+	set_process(false)
+	column = int($TileMap.get_used_rect().size.x/$TileMap.scale.x)
+	row = int($TileMap.get_used_rect().size.y/$TileMap.scale.y)
 	$Player.difficulty = difficulty
 	
 	$Player.screen_width = get_tree().get_root().size.x
 	var path = gen_path(column)
 	apply_path(path)
+	
 	pass
 
 func minigame_start():
@@ -18,16 +22,18 @@ func minigame_start():
 	pass
 	
 func _process(delta):
+	
 	fall(delta)
 	pass
 
 func apply_path(path_trace):
 	var height = $TileMap.get_used_rect().size.y
 	var width = $TileMap.get_used_rect().size.x
-	for i in range(height):
-		for j in range(width):
-			if path_trace[i].find(j) > -1:
-				$TileMap.set_cell(j, i, -1)
+	var i = 0
+	for cols in path_trace:
+		for j in cols:
+			$TileMap.set_cell(j, i, -1)
+		i += 1
 	pass
 	
 func gen_path (length, depth = 100, base = randi()):
@@ -36,8 +42,12 @@ func gen_path (length, depth = 100, base = randi()):
 	var result = []
 	for i in range(depth):
 		var value = []
-		var random = randi() % 3 - 1
-		while (base + random < 0 or base + random > length - 1):
+		var random
+		if base == 0:
+			random = randi()%2
+		elif base == length-1:
+			random = randi()%2-1
+		else:
 			random = randi() % 3 - 1
 		value.append(base)
 		if random != 0:

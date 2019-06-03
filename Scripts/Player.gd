@@ -16,12 +16,12 @@ func _process(delta):
 		increase_speed()
 		if position_vector.x + speed*delta <= screen_width:
 			position_vector.x += speed*delta
-		$Sprite.flip_v = false
+		$Sprite.flip_h = false
 	elif Input.is_action_pressed("ui_left"):
 		increase_speed()
 		if position_vector.x - speed*delta >= 0:
 			position_vector.x -= speed*delta
-		$Sprite.flip_v = true
+		$Sprite.flip_h = true
 	
 	if Input.is_action_just_released("ui_right") or Input.is_action_just_released("ui_left"):
 		speed = 0
